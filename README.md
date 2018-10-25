@@ -26,12 +26,20 @@ In order to install Julia on your computer, perform the following steps:
 - Install uber-juno through installation manager in atom.
 - Set the Julia path to the Julia binary that was installed in the first step (Use settings -> packages -> Julia -> setting).
 - Start Julia.
-- If you are installing PyCall and PyPlot for the first time, just do ENV["PYTHON"]="" followed by Pkg.build("PyCall") before running Pkg.add("PyPlot").
 
-Before running simulations, always run the file "init.jl". It is necessary to do it every time you start Julia, but not for every simulation.
+Before running simulations. It is necessary to install the package
+
+```julia
+using Pkg
+Pkg.clone("https://gitlab.mpcdf.mpg.de/clapp/HermiteGF.jl")
+using HermiteGF
+```
 
 In order to run parallel simulations, it is necessary to start Julia with appropriate amount of processes. Command line example:
+
+```
 julia -p 16 -L $HOME/hermiteGF/Julia/init.jl $HOME/hermiteGF/Julia/test_dependence_on_N.jl
+```
 
 We ask you to cite the following reference in scientific publica-
 tions which contain results obtained with this software and developments:
