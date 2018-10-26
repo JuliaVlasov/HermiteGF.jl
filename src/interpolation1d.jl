@@ -1,5 +1,5 @@
 """
-Computes an interpolant of a 2D function via Hermite-tensor method.
+Computes an interpolant of a 1D function via Hermite-tensor method.
 
 Arguments:
  - function_name : the name of the tested function.  Options_available: "f_3"
@@ -23,7 +23,7 @@ function interpolate_1D(function_name, nodes_types, epsilon, N, Ne, interpolatio
 
 
    ## ----------------------- TEST CASES -------------------------------------
-   if function_name == "f_3"
+   if function_name == :f_3
      # Setup the interpolated function.
      f(x) = cos.(x.^2)
 

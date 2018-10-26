@@ -24,7 +24,7 @@ function interpolate_5D(function_name, nodes_types, epsilon, N, Ne, interpolatio
   nodes_type_v = nodes_types[5]
 
   @assert (function_name == "f_3")
-  @assert (interpolation_type == :Radial || (interpolation_type == :Hermite )
+  @assert (interpolation_type == :Radial || interpolation_type == :Hermite )
 
   # Setup the interpolated function.
   f = (x, y, z, w, v) -> cos(x.^2 + y.^2 + z.^2 + w.^2 + v.^2)
