@@ -1,5 +1,7 @@
 # HermiteGF.jl
 
+[![Build Status](https://travis-ci.org/JuliaVlasov/HermiteGF.jl.svg?branch=master)](https://travis-ci.org/JuliaVlasov/HermiteGF.jl)
+
 Stable Gaussian radial basis function interpolation based on HermiteGF expansion
 
 HermiteGF stabilization code for the RBF interpolation. 
