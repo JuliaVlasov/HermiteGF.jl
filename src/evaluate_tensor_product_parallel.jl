@@ -1,3 +1,5 @@
+using SharedArrays
+
 ###
 # In this file the functions for the parallel computing of the interpolated values 's'
 # in 4 and 5D are implemented. Here the tensor representation of 's' is used  (see Sec. 4.1 of the paper)
@@ -36,7 +38,7 @@ This function retuns the (irange,jrange) indexes assigned to a worker.
 In the case of the HermiteGF code, q corresponds to the tensor 's' containing
 the values of the interpolant at the evaluation points
 """
-@everywhere function myrange_4D(q::SharedArray)
+function myrange_4D(q::SharedArray)
     idx = indexpids(q)
     if idx == 0
         # This worker is not assigned a piece
@@ -55,7 +57,7 @@ This function retuns the (irange,jrange) indexes assigned to a worker
 In the case of the HermiteGF code, q corresponds to the tensor 's' containing
 the values of the interpolant at the evaluation points
 """
-@everywhere function myrange_5D(q::SharedArray)
+function myrange_5D(q::SharedArray)
     idx = indexpids(q)
     if idx == 0
         # This worker is not assigned a piece
@@ -74,7 +76,7 @@ end
 This is the kernel where the actual multiplication happens.
 Every thread takes care of the slices within 'irange' of the evaluation points in 4-th dimension
 """
-@everywhere function evaluate_s_4D_parallel!(X_all, Y_all, Z_all, W_all, F, s, irange)
+function evaluate_s_4D_parallel!(X_all, Y_all, Z_all, W_all, F, s, irange)
 
     #@show (irange)  # display what irange each worker is taking care of
 
@@ -97,13 +99,13 @@ Every thread takes care of the slices within 'irange' of the evaluation points i
               @inbounds for eval_dim_2 = 1:Ne2
                 @inbounds for col_dim_1 = 1:Nx
                   @inbounds for eval_dim_1 = 1:Ne1
-                    s[eval_dim_1, eval_dim_2, eval_dim_3, eval_dim_4] = 
+                    s[eval_dim_1, eval_dim_2, eval_dim_3, eval_dim_4] = (
 		    s[eval_dim_1,eval_dim_2, eval_dim_3, eval_dim_4] 
 		    + X_all[eval_dim_1, col_dim_1]
 		    * Y_all[eval_dim_2, col_dim_2]
 		    * Z_all[eval_dim_3, col_dim_3]
 		    * W_all[eval_dim_4, col_dim_4]
-		    * F[col_dim_1, col_dim_2, col_dim_3, col_dim_4];
+		    * F[col_dim_1, col_dim_2, col_dim_3, col_dim_4])
                   end
                 end
               end
@@ -119,7 +121,7 @@ end
 This is the kernel where the actual multiplication happens.
 Every thread takes care of the slices within the 'irange' of the evaluation points in 5-th dimension
 """
-@everywhere function evaluate_s_5D_parallel!(X_all, Y_all, Z_all, W_all, V_all, F, s, irange)
+function evaluate_s_5D_parallel!(X_all, Y_all, Z_all, W_all, V_all, F, s, irange)
   
     #@show (irange)  # display what irange each worker is taking care of
 
@@ -146,14 +148,14 @@ Every thread takes care of the slices within the 'irange' of the evaluation poin
               @inbounds for eval_dim_2 = 1:Ne2
                 @inbounds for col_dim_1 = 1:Nx
                   @inbounds for eval_dim_1 = 1:Ne1
-                    s[eval_dim_1, eval_dim_2, eval_dim_3, eval_dim_4, eval_dim_5] = 
+                    s[eval_dim_1, eval_dim_2, eval_dim_3, eval_dim_4, eval_dim_5] = ( 
 		    s[eval_dim_1,eval_dim_2, eval_dim_3, eval_dim_4, eval_dim_5] 
 		    + X_all[eval_dim_1, col_dim_1]
 		    * Y_all[eval_dim_2, col_dim_2]
 		    * Z_all[eval_dim_3, col_dim_3]
 		    * W_all[eval_dim_4, col_dim_4]
 		    * V_all[eval_dim_5, col_dim_5]
-		    * F[col_dim_1, col_dim_2, col_dim_3, col_dim_4, col_dim_5];
+		    * F[col_dim_1, col_dim_2, col_dim_3, col_dim_4, col_dim_5])
                   end
                 end
               end
@@ -168,5 +170,5 @@ end
 end
 
 # This is an interface simplifying the call of the function from the rest of the code
-@everywhere evaluate_s_4D_parallel_chunk!(X_all, Y_all, Z_all, W_all, F, s) = evaluate_s_4D_parallel!(X_all, Y_all, Z_all, W_all, F, s, myrange_4D(s))
-@everywhere evaluate_s_5D_parallel_chunk!(X_all, Y_all, Z_all, W_all, V_all, F, s) = evaluate_s_5D_parallel!(X_all, Y_all, Z_all, W_all, V_all, F, s, myrange_5D(s))
+evaluate_s_4D_parallel_chunk!(X_all, Y_all, Z_all, W_all, F, s) = evaluate_s_4D_parallel!(X_all, Y_all, Z_all, W_all, F, s, myrange_4D(s))
+evaluate_s_5D_parallel_chunk!(X_all, Y_all, Z_all, W_all, V_all, F, s) = evaluate_s_5D_parallel!(X_all, Y_all, Z_all, W_all, V_all, F, s, myrange_5D(s))

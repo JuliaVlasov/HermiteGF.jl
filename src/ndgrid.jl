@@ -2,7 +2,7 @@ export ndgrid, ndgrid_fill!
 
 ndgrid(v::AbstractVector) = copy(v)
 
-function ndgrid{T}(v1::AbstractVector{T}, v2::AbstractVector{T})
+function ndgrid(v1::AbstractVector{T}, v2::AbstractVector{T}) where T
     m, n = length(v1), length(v2)
     v1 = reshape(v1, m, 1)
     v2 = reshape(v2, 1, n)
@@ -15,15 +15,15 @@ function ndgrid_fill!(a, v, s, snext)
     end
 end
 
-function ndgrid{T}(vs::AbstractVector{T}...)
-    n = length(vs)
-    sz = map(length, vs)
+function ndgrid(v1::AbstractVector{T}...) where T
+    n   = length(vs)
+    sz  = map(length, vs)
     out = ntuple(i->Array{T}(sz), n)
     s = 1
     for i=1:n
         a = out[i]::Array
         v = vs[i]
-        snext = s*size(a,i)
+        snext = s * size(a,i)
         ndgrid_fill(a, v, s, snext)
         s = snext
     end

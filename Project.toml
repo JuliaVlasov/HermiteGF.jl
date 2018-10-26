@@ -2,3 +2,13 @@ name = "HermiteGF"
 uuid = "6d312152-d853-11e8-033d-978d5c49d094"
 authors = ["Anna Yurova <anna.yurova@ipp.mpg.de>"]
 version = "0.1.0"
+
+[deps]
+Distributed = "8ba89e20-285c-5b6f-9357-94700520ee1b"
+LaTeXStrings = "b964fa9f-0449-5b57-a5c2-d3ea65f4040f"
+Plots = "91a5bcdd-55d7-5caf-9e0b-520d859cae80"
+PyCall = "438e738f-606a-5dbb-bf0a-cddfbfd45ab0"
+PyPlot = "d330b81b-6aea-500a-939a-2ce795aea3ee"
+SharedArrays = "1a1011a3-84de-559e-8e89-a11a2f7dc383"
+TensorOperations = "6aa20fa7-93e2-5fca-9bc0-fbd0db3c71a2"
+Test = "8dfed614-e22c-5e08-85e1-65c5234f0b40"
