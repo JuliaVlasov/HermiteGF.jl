@@ -9,4 +9,4 @@ module HermiteGF
   include("evaluate_hermite.jl")
   include("interpolation.jl")
 
-end # module
+end

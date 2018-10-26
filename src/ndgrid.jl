@@ -1,4 +1,4 @@
-# This file is a part of Julia. License is MIT: https://julialang.org/license
+export ndgrid, ndgrid_fill!
 
 ndgrid(v::AbstractVector) = copy(v)
 
@@ -9,7 +9,7 @@ function ndgrid{T}(v1::AbstractVector{T}, v2::AbstractVector{T})
     (repmat(v1, 1, n), repmat(v2, m, 1))
 end
 
-function ndgrid_fill(a, v, s, snext)
+function ndgrid_fill!(a, v, s, snext)
     for j = 1:length(a)
         a[j] = v[div(rem(j-1, snext), s)+1]
     end

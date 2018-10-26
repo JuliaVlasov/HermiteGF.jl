@@ -1,6 +1,4 @@
-authors = ["Anna Yurova <anna.yurova@ipp.mpg.de>"]
 name = "HermiteGF"
 uuid = "6d312152-d853-11e8-033d-978d5c49d094"
+authors = ["Anna Yurova <anna.yurova@ipp.mpg.de>"]
 version = "0.1.0"
-
-[deps]
