@@ -1,4 +1,7 @@
 """
+
+    interpolate_5D(function_name, nodes_types, epsilon, N, Ne, interpolation_type, gamma)
+
  Computes an interpolant of a 5D function via Hermite-tensor method.
 
  Arguments:

@@ -1,7 +1,7 @@
 site_name:        HermiteGF.jl
 repo_url:         https://github.com/JuliaVlasov/HermiteGF.jl
-site_description: Vlasov base types.
-site_author:      JuliaVlasov
+site_description: Stable Gaussian radial basis function interpolation
+site_author:      Anna Yurova
 
 theme: readthedocs
 

@@ -1,5 +1,8 @@
 """
-  Computes an interpolant of a 2D function via Hermite-tensor method.
+
+    interpolate_2D(function_name, nodes_types, epsilon, N, Ne, interpolation_type, gamma)
+
+Computes an interpolant of a 2D function via Hermite-tensor method.
 
    Arguments:
    - function_name : the name of the tested function.

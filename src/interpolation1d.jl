@@ -1,4 +1,7 @@
 """
+
+     interpolate_1D(function_name, nodes_types, epsilon, N, Ne, interpolation_type, gamma)
+
 Computes an interpolant of a 1D function via Hermite-tensor method.
 
 Arguments:
