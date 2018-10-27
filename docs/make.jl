@@ -12,7 +12,7 @@ makedocs(modules=[HermiteGF],
 
 deploydocs(
     deps   = Deps.pip("mkdocs", "python-markdown-math"),
-    repo   = "github.com/pnavaro/Splittings.jl.git",
+    repo   = "github.com/JuliaVlasov/HermiteGF.jl.git",
     julia  = "1.0",
-    osname = "osx"
+    osname = "linux"
  )
