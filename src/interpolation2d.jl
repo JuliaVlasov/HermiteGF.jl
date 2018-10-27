@@ -17,7 +17,7 @@ Computes an interpolant of a 2D function via Hermite-tensor method.
                         Options available: "Hermite", "Radial"
    gamma - a factor allowing to scale the domain and the function accordingly.
 
-   (c) Anna Yurova, 2017
+   © Anna Yurova, 2017
 """
 function interpolate_2D(function_name, nodes_types, epsilon, N, Ne, interpolation_type, gamma)
 
