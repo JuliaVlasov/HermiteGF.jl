@@ -1,6 +1,8 @@
 # HermiteGF.jl
 
 [![Build Status](https://travis-ci.org/JuliaVlasov/HermiteGF.jl.svg?branch=master)](https://travis-ci.org/JuliaVlasov/HermiteGF.jl)
+[![](https://img.shields.io/badge/docs-stable-blue.svg)](https://JuliaVlasov.github.io/HermiteGF.jl/stable)
+[![](https://img.shields.io/badge/docs-dev-blue.svg)](https://JuliaVlasov.github.io/HermiteGF.jl/dev)
 
 Stable Gaussian radial basis function interpolation based on HermiteGF expansion
 
