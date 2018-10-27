@@ -1,9 +1,6 @@
-before_install:
-  - sudo apt-get install -y curl cmake python3-matplotlib
-
 language: julia
 
-os: linux
+os: osx
 julia: 1.0
 
 notifications:
