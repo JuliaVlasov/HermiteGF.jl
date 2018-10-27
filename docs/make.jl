@@ -8,7 +8,7 @@ makedocs(modules=[HermiteGF],
          doctest = false,
          format = :html,
          sitename = "HermiteGF.jl",
-         pages = ["Functions" => "index.md"])
+         pages = Any["index.md"])
 
 deploydocs(
     deps   = Deps.pip("mkdocs", "python-markdown-math"),
