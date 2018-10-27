@@ -74,16 +74,6 @@ mutable struct Radial <: InterpolationType
 end
 
 
-# Setup the interpolated function.
-h(x) = cos.(x.^2)
-
-# Setup the bounds of the interpolation domain.
-xmin = -1
-xmax = 1
-
-f  = h(xx_k)
-xe = range(xmin, stop=xmax, length=ne1)
-
 function interpolate!(nodes_type::NodesType, 
 		      interpolation_type::InterpolationType,
 		      ne::Int64 )
@@ -104,8 +94,18 @@ function interpolate!(nodes_type::NodesType,
 
 end
 
-dx = abs(xe[2] - xe[1])
-l2_error = sqrt(trapz_1D((s - f_vals).^2, dx))
-l1_error = maximum(abs.(s .- f_vals))
-
-f_vals = h(xx_e)
+## Setup the interpolated function.
+#h(x) = cos.(x.^2)
+#
+## Setup the bounds of the interpolation domain.
+#xmin = -1
+#xmax = 1
+#
+#f  = h(x_k)
+#xe = range(xmin, stop=xmax, length=ne1)
+#
+#dx = abs(xe[2] - xe[1])
+#l2_error = sqrt(trapz_1D((s - f_vals).^2, dx))
+#l1_error = maximum(abs.(s .- f_vals))
+#
+#f_vals = h(xx_e)
