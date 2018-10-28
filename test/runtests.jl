@@ -8,7 +8,6 @@ using Plots
 pyplot()
 
 using Test
-include("new_interpolation.jl")
 include("test_interpolation1d.jl")
 
 #=

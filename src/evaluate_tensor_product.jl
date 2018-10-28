@@ -1,20 +1,22 @@
 """
+    evaluate_s(X_all, Y_all, Z_all, W_all, F)
+
 In this file the functions for the serial computing of the interpolated values 's'
 in 1-4D are implemented. Here the tensor representation of 's' is used (see Sec. 4.1 of the paper).
 
 Computing s = (W_all ⊗ Z_all ⊗ Y_all ⊗ X_all) vec(F) (see Sec. 4.1 of the paper)
     
 """
-function evaluate_s_4D(X_all, Y_all, Z_all, W_all, F)
+function evaluate_s(X_all, Y_all, Z_all, W_all, F)
 
     # Extract the number of collocation and evaluation points in each dimension
-    Nx = size(X_all, 2);
+    Nx  = size(X_all, 2);
     Ne1 = size(X_all, 1);
-    Ny = size(Y_all, 2);
+    Ny  = size(Y_all, 2);
     Ne2 = size(Y_all, 1);
-    Nz = size(Z_all, 2);
+    Nz  = size(Z_all, 2);
     Ne3 = size(Z_all, 1);
-    Nw = size(W_all, 2);
+    Nw  = size(W_all, 2);
     Ne4 = size(W_all, 1);
     
     # Initialize the result tensor
@@ -45,12 +47,13 @@ function evaluate_s_4D(X_all, Y_all, Z_all, W_all, F)
 end
 
 """
+    evaluate_s(X_all, Y_all, Z_all, F)
 
 Extract the number of collocation and evaluation points in each dimension 
 Computing `s = (Z_all ⊗ Y_all ⊗ X_all) vec(F)` (see Sec. 4.1 of the paper)
 
 """
-function evaluate_s_3D(X_all, Y_all, Z_all, F)
+function evaluate_s(X_all, Y_all, Z_all, F)
 
    Nx  = size(X_all, 2);
    Ne1 = size(X_all, 1);
@@ -85,15 +88,18 @@ function evaluate_s_3D(X_all, Y_all, Z_all, F)
 end
 
 """
+
+    evaluate_s(X_all, Y_all, F)
+
 Extract the number of collocation and evaluation points in each dimension
 
 Computing `s = (Y_all ⊗ X_all) vec(F)` (see Sec. 4.1 of the paper)
 """
-function evaluate_s_2D(X_all, Y_all, F)
+function evaluate_s(X_all, Y_all, F)
 
-    Nx = size(X_all, 2);
+    Nx  = size(X_all, 2);
     Ne1 = size(X_all, 1);
-    Ny = size(Y_all, 2);
+    Ny  = size(Y_all, 2);
     Ne2 = size(Y_all, 1);
 
     # Initialize the result tensor
@@ -114,11 +120,13 @@ function evaluate_s_2D(X_all, Y_all, F)
 end
 
 """
+    evaluate_s(X_all, F)
+
 Extract the number of collocation and evaluation points
 
 Computing s =  X_all * vec(F) (see Sec. 4.1 of the paper)
 """
-function evaluate_s_1D(X_all, F)
+function evaluate_s(X_all, F)
 
   Nx  = size(X_all, 2);
   Ne1 = size(X_all, 1);

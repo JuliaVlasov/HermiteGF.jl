@@ -6,7 +6,7 @@
 ###
 
 " Evaluate radial basis "
-function evaluate_radial(vc, ve, N, epsilon)
+function evaluate_radial(vc, ve, n, epsilon)
 
     result = zeros(Int(length(ve)), Int(length(vc)));
 
@@ -20,9 +20,9 @@ function evaluate_radial(vc, ve, N, epsilon)
 end
 
 " Generate chebyshev nodes on the interval [xmin xmax] "
-function generate_chebyshev_nodes(N, xmin, xmax)
+function generate_chebyshev_nodes(n, xmin, xmax)
 
-    theta1 = (pi:-pi/(N-1):-1e-14);
+    theta1 = (pi:-pi/(n-1):-1e-14);
     xk = ((cos.(theta1).+1)*(xmax-xmin))/2 .+ xmin
     xk
 
@@ -37,49 +37,48 @@ function generate_uniform_nodes(n, xmin, xmax)
 
 end
 
-" Trapezoidal rule for the uniform grid for 1-5D "
-function trapz_1D(values, dx)
+function trapz(values, dx)
 
     (sum(values) - values[1]/2 - values[end]/2)*dx
 
 end
 
-function trapz_2D(values, dx, dy)
+function trapz(values, dx, dy)
 
     temp = zeros(size(values, 1))
     for i = 1:size(values, 1)
-      temp[i] = trapz_1D(values[i, :], dy)
+      temp[i] = trapz(values[i, :], dy)
     end
-    trapz_1D(temp, dx)
+    trapz(temp, dx)
 
 end
 
-function trapz_3D(values, dx, dy, dz)
+function trapz(values, dx, dy, dz)
 
     temp = zeros(size(values, 1));
     for i = 1:size(values, 1)
-        temp[i] = trapz_2D(values[i, :, :], dy, dz)
+        temp[i] = trapz(values[i, :, :], dy, dz)
     end
-    trapz_1D(temp, dx);
+    trapz(temp, dx)
 
 end
 
-function trapz_4D(values, dx, dy, dz, dw)
+function trapz(values, dx, dy, dz, dw)
 
     temp = zeros(size(values, 1))
     for i = 1:size(values, 1)
-        temp[i] = trapz_3D(values[i, :, :, :], dy, dz, dw)
+        temp[i] = trapz(values[i, :, :, :], dy, dz, dw)
     end
-    trapz_1D(temp, dx)
+    trapz(temp, dx)
 
 end
 
-function trapz_5D(values, dx, dy, dz, dw, dv)
+function trapz(values, dx, dy, dz, dw, dv)
 
     temp = zeros(size(values, 1))
     for i = 1:size(values, 1)
-      temp[i] = trapz_4D(values[i, :, :, :, :], dy, dz, dw, dv)
+      temp[i] = trapz(values[i, :, :, :, :], dy, dz, dw, dv)
     end
-    trapz_1D(temp, dx)
+    trapz(temp, dx)
 
 end
