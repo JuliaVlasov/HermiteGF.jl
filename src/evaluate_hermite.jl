@@ -28,7 +28,7 @@ function evaluate_hermite(xk, N, epsilon, gamma)
 
   # Three term recurrence for the Hermite functions with argument gamma*x
   for i = 3:N
-    result[:,i] = sqrt(2.0/(i-1)) .* (gamma*xk) .* result[:,i-1] .- sqrt((i-2)/(i-1)) .* result[:,i-2]
+    result[:,i] = sqrt(2.0/(i-1)) .* (gamma*xk) .* result[:,i-1] - sqrt((i-2)/(i-1)) .* result[:,i-2]
   end
 
   # Scaling the Hermite functions with the exponential factor
