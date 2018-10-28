@@ -2,7 +2,6 @@ push!(LOAD_PATH,"../src/")
 
 using HermiteGF
 using Documenter
-using Plots # to not capture precompilation output
 
 makedocs(modules=[HermiteGF],
          doctest = false,
