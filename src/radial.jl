@@ -11,7 +11,7 @@ mutable struct Radial <: InterpolationType
     xk         :: Array{Float64,1}
     colloc_mat :: Array{Float64,2}
 
-    function Radial( nodes::NodesType, epsilon )
+    function Radial( nodes::NodesType, epsilon::Real )
         
         xk         = nodes.xk
         nx         = nodes.nx
