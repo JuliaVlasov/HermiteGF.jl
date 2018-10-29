@@ -1,16 +1,25 @@
 module HermiteGF
 
-  using Distributed
-  using SharedArrays
-
-  export interpolate_1D
-  export interpolate_2D
+  export Hermite, Radial
+  export Chebyshev, Uniform
+  export interpolate
 
   include("helper_functions.jl")
   include("ndgrid.jl")
   include("evaluate_tensor_product.jl")
-  #@everywhere include("evaluate_tensor_product_parallel.jl")
   include("evaluate_hermite.jl")
+
+  " Interpolation type (Hermite or Radial) "
+  abstract type InterpolationType end
+
+  " Node positions (Uniform or Chebyshev) "
+  abstract type NodesType end
+
+  include("chebyshev.jl")
+  include("uniform.jl")
+  include("hermite.jl")
+  include("radial.jl")
+
   include("interpolation1d.jl")
   include("interpolation2d.jl")
   include("interpolation3d.jl")

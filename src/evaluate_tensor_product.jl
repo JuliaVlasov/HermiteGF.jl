@@ -1,87 +1,70 @@
+using TensorOperations
+
 """
-    evaluate_s(X_all, Y_all, Z_all, W_all, F)
+    evaluate_s(x, y, z, v, w, f)
 
-In this file the functions for the serial computing of the interpolated values 's'
-in 1-4D are implemented. Here the tensor representation of 's' is used (see Sec. 4.1 of the paper).
-
-Computing s = (W_all ⊗ Z_all ⊗ Y_all ⊗ X_all) vec(F) (see Sec. 4.1 of the paper)
+Computing s = (w ⊗ v ⊗ z  ⊗ y ⊗ x) vec(f) (see Sec. 4.1 of the paper)
     
 """
-function evaluate_s(X_all, Y_all, Z_all, W_all, F)
+function evaluate_s(x, y, z, v, w, f)
 
     # Extract the number of collocation and evaluation points in each dimension
-    Nx  = size(X_all, 2);
-    Ne1 = size(X_all, 1);
-    Ny  = size(Y_all, 2);
-    Ne2 = size(Y_all, 1);
-    Nz  = size(Z_all, 2);
-    Ne3 = size(Z_all, 1);
-    Nw  = size(W_all, 2);
-    Ne4 = size(W_all, 1);
+    ne1 = size(x)[1]
+    ne2 = size(y)[1]
+    ne3 = size(z)[1]
+    ne4 = size(v)[1]
+    ne5 = size(w)[1]
     
     # Initialize the result tensor
-    s = zeros(Ne1, Ne2, Ne3, Ne4);
+    s = zeros(ne1, ne2, ne3, ne4, ne5)
     
-    @inbounds for col_dim_4 = 1:Nw
-      @inbounds for eval_dim_4 = 1:Ne4
-        @inbounds for col_dim_3 = 1:Nz
-          @inbounds for eval_dim_3 = 1:Ne3
-            @inbounds for col_dim_2 = 1:Ny
-              @inbounds for eval_dim_2 = 1:Ne2
-                @inbounds for col_dim_1 = 1:Nx
-                  @inbounds for eval_dim_1 = 1:Ne1
-                    s[eval_dim_1, eval_dim_2, eval_dim_3, eval_dim_4] = ( 
-    		s[eval_dim_1,eval_dim_2, eval_dim_3, eval_dim_4] 
-    		+ X_all[eval_dim_1, col_dim_1] * Y_all[eval_dim_2, col_dim_2]
-    		* Z_all[eval_dim_3, col_dim_3] * W_all[eval_dim_4, col_dim_4]
-		* F[col_dim_1, col_dim_2, col_dim_3, col_dim_4])
-                  end
-                end
-              end
-            end
-          end
-        end
-      end
+    @tensor begin
+        s[e1,e2,e3,e4,e5] = s[e1,e2,e3,e4,e5] + x[e1,c1]*y[e2,c2]*z[e3,c3]*v[e4,c4]*w[e5,c5]*f[c1,c2,c3,c4,c5]
     end
     s
 end
 
 """
-    evaluate_s(X_all, Y_all, Z_all, F)
+    evaluate_s(x, y, z, w, f)
 
-Extract the number of collocation and evaluation points in each dimension 
-Computing `s = (Z_all ⊗ Y_all ⊗ X_all) vec(F)` (see Sec. 4.1 of the paper)
+Computing s = (w ⊗ z ⊗ y ⊗ x) vec(f) (see Sec. 4.1 of the paper)
+    
+"""
+function evaluate_s(x, y, z, w, f)
+
+    # Extract the number of collocation and evaluation points in each dimension
+    ne1 = size(x)[1]
+    ne2 = size(y)[1]
+    ne3 = size(z)[1]
+    ne4 = size(w)[1]
+    
+    # Initialize the result tensor
+    s = zeros(ne1, ne2, ne3, ne4)
+    
+    @tensor begin
+        s[e1,e2,e3,e4] = s[e1,e2,e3,e4] + x[e1,c1]*y[e2,c2]*z[e3,c3]*w[e4,c4]*f[c1,c2,c3,c4]
+    end
+    s
+end
 
 """
-function evaluate_s(X_all, Y_all, Z_all, F)
+    evaluate_s(x, y, z, f)
 
-   Nx  = size(X_all, 2);
-   Ne1 = size(X_all, 1);
-   Ny  = size(Y_all, 2);
-   Ne2 = size(Y_all, 1);
-   Nz  = size(Z_all, 2);
-   Ne3 = size(Z_all, 1);
+Extract the number of collocation and evaluation points in each dimension 
+Computing `s = (z ⊗ y ⊗ x) vec(f)` (see Sec. 4.1 of the paper)
+
+"""
+function evaluate_s(x, y, z, f)
+
+    ne1 = size(x)[1]
+    ne2 = size(y)[1]
+    ne3 = size(z)[1]
    
    # Initialize the result tensor
-   s = zeros(Ne1, Ne2, Ne3);
+   s = zeros(ne1,ne2,ne3)
    
-   @inbounds for col_dim_3 = 1:Nz
-     @inbounds for eval_dim_3 = 1:Ne3
-       @inbounds for col_dim_2 = 1:Ny
-         @inbounds for eval_dim_2 = 1:Ne2
-           @inbounds for col_dim_1 = 1:Nx
-             @inbounds for eval_dim_1 = 1:Ne1
-               s[eval_dim_1, eval_dim_2, eval_dim_3] = ( 
-   	    s[eval_dim_1,eval_dim_2, eval_dim_3] 
-   	    + X_all[eval_dim_1, col_dim_1]
-   	    * Y_all[eval_dim_2, col_dim_2]
-   	    * Z_all[eval_dim_3 ,col_dim_3]
-	    * F[col_dim_1, col_dim_2, col_dim_3] )
-             end
-           end
-         end
-       end
-     end
+   @tensor begin
+       s[e1,e2,e3] = s[e1,e2, e3]+x[e1,c1]*y[e2,c2]*z[e3,c3]*f[c1,c2,c3]
    end
    s
 
@@ -89,55 +72,40 @@ end
 
 """
 
-    evaluate_s(X_all, Y_all, F)
+    evaluate_s(x, y, f)
 
 Extract the number of collocation and evaluation points in each dimension
 
-Computing `s = (Y_all ⊗ X_all) vec(F)` (see Sec. 4.1 of the paper)
+Computing `s = (y ⊗ x) vec(f)` (see Sec. 4.1 of the paper)
 """
-function evaluate_s(X_all, Y_all, F)
+function evaluate_s(x, y, f)
 
-    Nx  = size(X_all, 2);
-    Ne1 = size(X_all, 1);
-    Ny  = size(Y_all, 2);
-    Ne2 = size(Y_all, 1);
+    ne1 = size(x)[1]
+    ne2 = size(y)[1]
 
     # Initialize the result tensor
-    s = zeros(Ne1, Ne2);
+    s = zeros(ne1, ne2)
 
-    @inbounds for col_dim_2 = 1:Ny
-      @inbounds for eval_dim_2 = 1:Ne2
-        @inbounds for col_dim_1 = 1:Nx
-          @inbounds for eval_dim_1 = 1:Ne1
-            s[eval_dim_1, eval_dim_2] = ( s[eval_dim_1,eval_dim_2] 
-	    + X_all[eval_dim_1, col_dim_1]
-	    * Y_all[eval_dim_2, col_dim_2]*F[col_dim_1, col_dim_2])
-          end
-        end
-      end
+    @tensor begin 
+        s[e1,e2] = s[e1,e2]+x[e1,c1]*y[e2,c2]*f[c1,c2]
     end
     s
 end
 
 """
-    evaluate_s(X_all, F)
+    evaluate_s(x, f)
 
 Extract the number of collocation and evaluation points
 
-Computing s =  X_all * vec(F) (see Sec. 4.1 of the paper)
+Computing s =  x * vec(f) (see Sec. 4.1 of the paper)
 """
-function evaluate_s(X_all, F)
-
-  Nx  = size(X_all, 2);
-  Ne1 = size(X_all, 1);
+function evaluate_s(x, f)
 
   # Initialize the result tensor
-  s = zeros(Ne1);
+  s = similar(x)
 
-  @inbounds for col_dim_1 = 1:Nx
-    @inbounds for eval_dim_1 = 1:Ne1
-      s[eval_dim_1] = s[eval_dim_1] + X_all[eval_dim_1, col_dim_1]*F[col_dim_1];
-    end
+  @tensor begin 
+      s[e1] = s[e1] + x[e1,c1]*f[c1]
   end
 
   s
