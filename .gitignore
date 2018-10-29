@@ -1,7 +1,4 @@
 docs/build
 *.swp
 Manifest.toml
-notebooks/.ipynb
-notebooks/.ipynb_checkpoints/.ipynb-checkpoint
-notebooks/.ipynb_checkpoints/HermiteGF-checkpoint.ipynb
-test/.ipynb_checkpoints/HermiteGF-checkpoint.ipynb
+notebooks/.ipynb_checkpoints
