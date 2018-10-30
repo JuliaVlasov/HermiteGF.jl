@@ -12,6 +12,4 @@ makedocs(modules=[HermiteGF],
 deploydocs(
     deps   = Deps.pip("mkdocs", "python-markdown-math"),
     repo   = "github.com/JuliaVlasov/HermiteGF.jl.git",
-    julia  = "1.0",
-    osname = "osx"
  )
