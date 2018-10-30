@@ -1,14 +1,11 @@
-import HermiteGF: interpolate_1D
-import HermiteGF: interpolate_2D
-import HermiteGF: interpolate_3D
-import HermiteGF: interpolate_4D
-import HermiteGF: interpolate_5D
-
-using Plots
-pyplot()
+using HermiteGF
 
 using Test
+
+include("trapz.jl")
+include("ndgrid.jl")
 include("test_interpolation1d.jl")
+include("test_interpolation2d.jl")
 
 #=
 plot!( nvec, errors["1D"];

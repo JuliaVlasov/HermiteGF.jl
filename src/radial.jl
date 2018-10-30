@@ -1,22 +1,24 @@
 """
     Radial( nodes::NodesType, epsilon, gamma )
 
-Radial inteprolation
+Radial interpolation
 
 """
 mutable struct Radial <: InterpolationType
 
-    nx         :: Int64
+    nnodes     :: Int64
     epsilon    :: Float64
-    xk         :: Array{Float64,1}
+    nodes      :: Array{Float64,1}
     colloc_mat :: Array{Float64,2}
 
-    function Radial( nodes::NodesType, epsilon::Real )
+    function Radial( nodes_t::NodesType, epsilon::Float64 )
         
-        xk         = nodes.xk
-        nx         = nodes.nx
-        colloc_mat = evaluate_radial(xk, xk, nx, epsilon)
-        new( nx, epsilon, xk, colloc_mat )
+        nodes      = nodes_t.xk
+        nnodes     = nodes_t.nx
+
+        colloc_mat = exp.((-epsilon^2) * (nodes .- transpose(nodes)).^2)
+
+        new( nnodes, epsilon, nodes, colloc_mat )
         
     end
 
@@ -25,13 +27,15 @@ end
 """
     Radial( xe )
 
-returns evaluation matrix
+returns evaluated function
+
 """
 function (interp::Radial)( xe::Array{Float64,1} )
 
-    nx      = interp.nx
     epsilon = interp.epsilon
-    xk      = interp.xk
-    evaluate_radial(xk, xe, nx, epsilon)
+    xk      = interp.nodes
+
+    (exp.((-epsilon^2) * (xe .- transpose(xk)).^2)) / interp.colloc_mat
 
 end
+
