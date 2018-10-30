@@ -95,7 +95,7 @@ function interpolate(interp_x :: InterpolationType,
     y = interp_y(ye) 
     z = interp_z(ze) 
 
-    @tensor begin
+    @tensoropt begin
         s[e1,e2,e3] := x[e1,c1]*y[e2,c2]*z[e3,c3]*f[c1,c2,c3]
     end
     s
@@ -139,7 +139,7 @@ function interpolate(interp_x :: InterpolationType,
     z = interp_z(ze) 
     v = interp_v(ve) 
 
-    @tensor begin
+    @tensoropt begin
         s[e1,e2,e3,e4] := x[e1,c1]*y[e2,c2]*z[e3,c3]*v[e4,c4]*f[c1,c2,c3,c4]
     end
     s
@@ -190,7 +190,7 @@ function interpolate(interp_x :: InterpolationType,
     v = interp_v(ve) 
     w = interp_w(we) 
 
-    @tensor begin
+    @tensoropt begin
         s[e1,e2,e3,e4,e5] := x[e1,c1]*y[e2,c2]*z[e3,c3]*v[e4,c4]*w[e5,c5]*f[c1,c2,c3,c4,c5]
     end
     s

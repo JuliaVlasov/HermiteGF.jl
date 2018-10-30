@@ -23,7 +23,7 @@ fk = f(xk, yk)
 
 @testset "Hermite 2D" begin
 	
-    s = interpolate( hermite_x, hermite_y, fk, xe, ye )
+    @time s = interpolate( hermite_x, hermite_y, fk, xe, ye )
     
     max_error = maximum(abs.(s .- f(xe, ye)))
     l2_error = sqrt(trapz((s .- f(xe, ye)).^2, dx, dy))

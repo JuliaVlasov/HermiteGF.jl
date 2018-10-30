@@ -46,7 +46,7 @@ end
         dx  = xe[2]-xe[1]
         fe  = cos.(xe.^2)
 
-        s   = interpolate( interp, fk, xe )
+        @time s   = interpolate( interp, fk, xe )
 
         l2_error = sqrt(trapz((s - fe).^2, dx))
         l1_error = maximum(abs.(s .- fe))

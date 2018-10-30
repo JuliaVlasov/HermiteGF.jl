@@ -2,9 +2,9 @@
 
     f(x, y, z) = cos(x^2 + y^2 + z^2)
 
-    xmin, xmax, nx = -1, 1, 16
-    ymin, ymax, ny = -1, 1, 16
-    zmin, zmax, nz = -1, 1, 16
+    xmin, xmax, nx = -1, 1, 32
+    ymin, ymax, ny = -1, 1, 32
+    zmin, zmax, nz = -1, 1, 32
 
     ϵ = 0.1
     γ = 3.0
@@ -17,7 +17,7 @@
     yk = hermite_y.nodes
     zk = hermite_z.nodes
 
-    nxe, nye, nze = 16, 32, 64
+    nxe, nye, nze = 32, 64, 128
 
     xe = collect(range(xmin, stop=xmax, length=nxe))
     ye = collect(range(ymin, stop=ymax, length=nye))
@@ -29,7 +29,7 @@
     fk = [f(x, y, z) for x in xk, y in yk, z in zk]
     fe = [f(x, y, z) for x in xe, y in ye, z in ze]
 
-    s  = interpolate(hermite_x, hermite_y, hermite_z, fk, xe, ye, ze)
+    @time s  = interpolate(hermite_x, hermite_y, hermite_z, fk, xe, ye, ze)
 
     max_error = maximum(abs.(s .- fe))
 
