@@ -4,9 +4,6 @@ module HermiteGF
   export Chebyshev, Uniform
   export interpolate
 
-  include("evaluate_tensor_product.jl")
-  include("evaluate_hermite.jl")
-
   " Interpolation type (Hermite or Radial) "
   abstract type InterpolationType end
 
