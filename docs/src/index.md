@@ -1,9 +1,8 @@
 # HermiteGF.jl Documentation
 
-## Stable evaluation of Gaussian radial basis functions using Hermite polynomials
+Stable evaluation of Gaussian radial basis functions using Hermite polynomials
 
-```@autodocs
+## Types
+
 Modules = [HermiteGF]
-Order   = [:function, :type]
-```
-
+Order   = [:type]
