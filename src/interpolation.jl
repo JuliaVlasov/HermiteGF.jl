@@ -22,7 +22,7 @@ function interpolate(interp :: InterpolationType,
 
    x = interp(xe) 
 
-   @tensor begin
+   @tensoropt begin
       s[e] := x[e, c]*f[c]
    end
     
@@ -53,7 +53,7 @@ function interpolate(interp_x :: InterpolationType,
    x = interp_x(xe) 
    y = interp_y(ye) 
 
-   @tensor begin 
+   @tensoropt begin 
        s[e1,e2] := x[e1,c1]*y[e2,c2]*f[c1,c2]
    end
     
