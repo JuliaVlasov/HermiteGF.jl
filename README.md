@@ -10,7 +10,7 @@ Author: Anna Yurova
 
 This is an implementation of the method described in the paper
 
-[*STABLE EVALUATION OF GAUSSIAN RADIAL BASIS FUNCTIONS USING HERMITE POLYNOMIALS*](https://arxiv.org/abs/1709.02164)
+[*Stable evaluation of guassian radial basis functions using Hermite polynomials*](https://arxiv.org/abs/1709.02164)
 
 by Anna Yurova and Katharina Kormann.
 
