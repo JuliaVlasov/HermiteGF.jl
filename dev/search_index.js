@@ -17,11 +17,75 @@ var documenterSearchIndex = {"docs": [
 },
 
 {
+    "location": "#HermiteGF.Chebyshev",
+    "page": "Documentation",
+    "title": "HermiteGF.Chebyshev",
+    "category": "type",
+    "text": "Chebyshev( nx, xmin, xmax )\n\nChebyshev nodes\n\n\n\n\n\n"
+},
+
+{
+    "location": "#HermiteGF.Hermite",
+    "page": "Documentation",
+    "title": "HermiteGF.Hermite",
+    "category": "type",
+    "text": "Hermite( nodes::NodesType, epsilon:Real, gamma:Real )\n\nHermite inteprolation\n\n\n\n\n\n"
+},
+
+{
+    "location": "#HermiteGF.Hermite-Tuple{Array{Float64,1}}",
+    "page": "Documentation",
+    "title": "HermiteGF.Hermite",
+    "category": "method",
+    "text": "Hermite( xe )\n\nThis function returns the matrix He of the values of the HermiteGF basis functions. The computation is done via three term recurrence for Hermite functions with an argument gamma*x and then appropriate exponential scaling.\n\nMore details can be found in Section 5.1 of the paper\n\nSTABLE EVALUATION OF GAUSSIAN RADIAL BASIS  FUNCTIONS USING HERMITE POLYNOMIALS  by Anna Yurova and Katharina Kormann.\n\n\n\n\n\n"
+},
+
+{
+    "location": "#HermiteGF.Radial",
+    "page": "Documentation",
+    "title": "HermiteGF.Radial",
+    "category": "type",
+    "text": "Radial( nodes::NodesType, epsilon, gamma )\n\nRadial interpolation\n\n\n\n\n\n"
+},
+
+{
+    "location": "#HermiteGF.Radial-Tuple{Array{Float64,1}}",
+    "page": "Documentation",
+    "title": "HermiteGF.Radial",
+    "category": "method",
+    "text": "Radial( xe )\n\nreturns evaluated function\n\n\n\n\n\n"
+},
+
+{
+    "location": "#HermiteGF.Uniform",
+    "page": "Documentation",
+    "title": "HermiteGF.Uniform",
+    "category": "type",
+    "text": "Uniform( nx, xmin, xmax )\n\nUniform nodes\n\n\n\n\n\n"
+},
+
+{
+    "location": "#HermiteGF.InterpolationType",
+    "page": "Documentation",
+    "title": "HermiteGF.InterpolationType",
+    "category": "type",
+    "text": "Interpolation type (Hermite or Radial) \n\n\n\n\n\n"
+},
+
+{
+    "location": "#HermiteGF.NodesType",
+    "page": "Documentation",
+    "title": "HermiteGF.NodesType",
+    "category": "type",
+    "text": "Node positions (Uniform or Chebyshev) \n\n\n\n\n\n"
+},
+
+{
     "location": "#Types-1",
     "page": "Documentation",
     "title": "Types",
     "category": "section",
-    "text": "```@autodocs Modules = [HermiteGF] Order   = [:type]"
+    "text": "Modules = [HermiteGF]\nOrder   = [:type]"
 },
 
 {
