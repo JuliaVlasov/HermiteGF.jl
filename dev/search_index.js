@@ -21,7 +21,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Documentation",
     "title": "HermiteGF.Chebyshev",
     "category": "type",
-    "text": "Chebyshev( nx, xmin, xmax )\n\nChebyshev nodes\n\n\n\n\n\n"
+    "text": "Chebyshev( xmin, xmax, nx )\n\nChebyshev nodes\n\n\n\n\n\n"
 },
 
 {
