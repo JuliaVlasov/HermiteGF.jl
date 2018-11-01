@@ -61,7 +61,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Documentation",
     "title": "HermiteGF.Uniform",
     "category": "type",
-    "text": "Uniform( nx, xmin, xmax )\n\nUniform nodes\n\n\n\n\n\n"
+    "text": "Uniform( xmin, xmax, nx )\n\nUniform nodes\n\n\n\n\n\n"
 },
 
 {
