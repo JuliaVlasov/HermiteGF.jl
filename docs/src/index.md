@@ -7,3 +7,4 @@ Stable evaluation of Gaussian radial basis functions using Hermite polynomials
 ```@autodocs
 Modules = [HermiteGF]
 Order   = [:type]
+```
