@@ -21,7 +21,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Documentation",
     "title": "Types",
     "category": "section",
-    "text": "Modules = [HermiteGF] Order   = [:type]"
+    "text": "```@autodocs Modules = [HermiteGF] Order   = [:type]"
 },
 
 {
