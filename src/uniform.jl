@@ -1,5 +1,5 @@
 """
-    Uniform( nx, xmin, xmax )
+    Uniform( xmin, xmax, nx )
 
 Uniform nodes
 
