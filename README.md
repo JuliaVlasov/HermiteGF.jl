@@ -10,8 +10,6 @@ This is an implementation of the method described in the paper
 
 Anna Yurova and Katharina Kormann [*Stable evaluation of guassian radial basis functions using Hermite polynomials*](https://arxiv.org/abs/1709.02164).
 
-- HermiteGF-tensor in 1-5D. The implementation of 4-5D cases is parallel. 5D tests have to be run on a cluster to be finished in a reasonable time.
-
 Installation
 
 ```julia
