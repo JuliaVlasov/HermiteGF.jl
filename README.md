@@ -14,7 +14,7 @@ Stable Gaussian radial basis function interpolation based on HermiteGF expansion
 
 This is an implementation of the method described in the paper
 
-Anna Yurova and Katharina Kormann [*Stable evaluation of guassian radial basis functions using Hermite polynomials*](https://arxiv.org/abs/1709.02164).
+Anna Yurova and Katharina Kormann [*Stable evaluation of gaussian radial basis functions using Hermite polynomials*](https://arxiv.org/abs/1709.02164).
 
 Installation
 
