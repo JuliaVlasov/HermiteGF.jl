@@ -1,7 +1,7 @@
 """
     Hermite( nodes::NodesType, epsilon:Real, gamma:Real )
 
-Hermite inteprolation
+Hermite interpolation
 
 """
 mutable struct Hermite <: InterpolationType
